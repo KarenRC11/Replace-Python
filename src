@@ -1,0 +1,40 @@
+#Replace frases de un texto y escribir en otro
+
+from datetime import datetime
+def replaceText(text):
+    #print("Cuál es tu nombre")
+    #name = input()
+    #return text.replace("[NAME]", "Bobby")
+
+    filters = [["[NAME]", "Name"],
+              ["[AGE]", "Age"]]
+
+    for filter in filters:
+        print("What is the " + filter[1] + "?")
+        txtInput = input()
+        text = text.replace(filter[0], txtInput)
+
+    #result = text.replace("[NAME]", name)
+    #print("Cuál es tu edad")
+    #edad = input()
+    #result = result.replace("[AGE]", edad)
+
+    return text.replace("[DATE]", datetime.today().strftime('%Y-%m-%d'))
+
+
+#FUERA DE LA FUNCIÓN
+saludoFile = open("prueba.txt", "r")
+result = ""
+
+#print("Cuál es tu nombre")
+#name = input()
+#print("Cuál es tu edad")
+#edad = input()
+
+for row in saludoFile:
+    result += row
+result = replaceText(result)
+        #replaceText(row)
+
+with open("saludo_processed.txt", "w") as textFile:
+    textFile.write(result)
